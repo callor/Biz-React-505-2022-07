@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나의 홈페이지</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>반갑습니다</h1>
+    <input name="text" />
+    <p class="text"></p>
+
+    <script>
+      /*
+        input box 에 text 를 키보드로 입력하면
+        그 문자열을 추출하여 바고 p tag 에 보여달라
+
+        */
+      const input_text = document.querySelector("input[name='text']");
+      input_text?.addEventListener("input", (e) => {
+        const value = e.target.value;
+        const p_text = document.querySelector("p.text");
+        p_text.innerText = value;
+      });
+    </script>
+  </body>
+</html>
