@@ -1,4 +1,12 @@
-import { useState } from "react";
+/*
+ use* 로 시작되는 react 의 함수들
+ Hook 함수라고 한다
+ component lifecycle 과 관련된 함수들이다
+ state 만들거나, state 변화를 감시하거나
+ component 가 rendering 되는 시점에 무언가를 실행시거나
+ 하는 용도의 함수들들이다
+*/
+import { useState, useEffect } from "react";
 import uuid from "react-uuid";
 import moment from "moment";
 import BucketList from "./BucketList";
@@ -21,8 +29,28 @@ const BucketMain = () => {
    새로운 배열과 기존의 배열을 교환하는 방식으로 이루어진다
 
    */
-  const [bucketList, setBucketList] = useState([]);
+  const [bucketList, setBucketList] = useState(() => {
+    /*
+    현재 브라우저의 localStorage 에 BUCKELIST 이름으로
+    데이터가 저장되어 있으면 데이터를 읽어서 JSOIN 데이터로
+    변환 한 후 bucketList 를 생성하고
+    없으면 빈(blank) 배열을 생성하라
+    */
+    const bucketBody = JSON.parse(localStorage.getItem("BUCKETLIST"));
+    if (bucketBody) return bucketBody;
+    else return [];
+  });
 
+  /*
+  bucketList 데이터가 추가, 수정, 삭제 가 되면
+  localStorage 에 BUCKETLIST 라는 이름으로
+  JSON 데이터를 문자열로 변환하여 저장
+  */
+  useEffect(() => {
+    localStorage.setItem("BUCKETLIST", JSON.stringify(bucketList));
+  }, [bucketList]);
+
+  // 버킷을 입력한 후 버킷을 추가할때 사용하는 함수
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
       const bucket = {
@@ -34,6 +62,7 @@ const BucketMain = () => {
       };
       setBucketList([...bucketList, bucket]);
       console.table(bucketList);
+      e.target.value = "";
     }
   }; // end onKeyDown
 
@@ -67,15 +96,22 @@ const BucketMain = () => {
     setBucketList(bucketBody);
   }; // end bucket_flag_toggle
 
-  const bucket_complet = (id) => {
+  const bucket_complete = (id) => {
     const bucketBody = bucketList.map((bucket) => {
       if (bucket.b_id === id) {
-        const e_date = moment().format("YYYY[-]MM[-]DD HH:mm:ss");
+        const e_date = bucket.b_end_date
+          ? ""
+          : moment().format("YYYY[-]MM[-]DD HH:mm:ss");
+
         return { ...bucket, b_end_date: e_date };
       }
       return bucket;
     });
     setBucketList(bucketBody);
+  }; // end bucket_complete
+
+  const saveBucketList = () => {
+    localStorage.setItem("BUCKETLIST", JSON.stringify(bucketList));
   };
 
   /*
@@ -90,7 +126,7 @@ const BucketMain = () => {
   const functions = {
     bucket_delete,
     bucket_flag_toggle,
-    bucket_complet,
+    bucket_complete,
   };
 
   return (

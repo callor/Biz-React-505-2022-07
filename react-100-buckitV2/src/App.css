@@ -45,3 +45,8 @@
 td {
   cursor: pointer;
 }
+
+tr.cancel {
+  text-decoration: line-through;
+  color: red;
+}
