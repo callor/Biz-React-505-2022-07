@@ -110,8 +110,15 @@ const BucketMain = () => {
     setBucketList(bucketBody);
   }; // end bucket_complete
 
-  const saveBucketList = () => {
-    localStorage.setItem("BUCKETLIST", JSON.stringify(bucketList));
+  const bucket_item_edit = (id, content) => {
+    const bucketBody = bucketList.map((bucket) => {
+      if (bucket.b_id === id) {
+        const _temp_bucket = { ...bucket, b_bucket: content };
+        return _temp_bucket;
+      }
+      return bucket;
+    });
+    setBucketList(bucketBody);
   };
 
   /*
@@ -127,6 +134,7 @@ const BucketMain = () => {
     bucket_delete,
     bucket_flag_toggle,
     bucket_complete,
+    bucket_item_edit,
   };
 
   return (

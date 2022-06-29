@@ -7,8 +7,8 @@ import BucketMain from "./components/BucketMain";
 const backgroudStyle = {
   backgroundImage: `url(${backgroundImage})`,
   backgroundRepeat: "no-repeat",
-  backgroundAttachment: "scroll",
-  backgroundSize: "100% 100%",
+  backgroundAttachment: "fixed",
+  backgroundSize: "100vw auto",
 };
 
 function App() {
