@@ -24,10 +24,10 @@ const TodoMain = () => {
 
   return (
     <div className="w3-container w3-margin">
-      {/* TodoInput 야 insert_todo 함수를 넣에게 보낸다  */}
-      <TodoInput insert_todo={insert_todo} />
       {/* TodoList 야 todoList 데이터를 todoList 변수에 담아 보낸다  */}
       <TodoList todoList={todoList} />
+      {/* TodoInput 야 insert_todo 함수를 넣에게 보낸다  */}
+      <TodoInput insert_todo={insert_todo} />
     </div>
   );
 };
