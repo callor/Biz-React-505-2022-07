@@ -6,8 +6,8 @@ const TodoList = (props) => {
   //  각각의 요소를 TodoItem 에 item 변수에 담아 보내고
   // 생성된 TodoItem 요소들을 모아서
   // _tempTodoList 를 생성하기
-  const _tempTodoList = todoList.map((todo, index) => {
-    const todo_td = <TodoItem todo={todo} index={index} />;
+  const _tempTodoList = todoList.map((todo) => {
+    const todo_td = <TodoItem todo={todo} />;
     return todo_td;
   });
 

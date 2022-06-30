@@ -1,7 +1,6 @@
-const TodoItem = ({ todo, index }) => {
+const TodoItem = ({ todo }) => {
   return (
     <tr>
-      <td>{index + 1}</td>
       <td>{todo.content}</td>
     </tr>
   );
