@@ -7,7 +7,8 @@
   `App.js` 파일을 `React.js` 로,  
   `App.css` 파일을 `React.css`파일로  
   `App.test.js`파일을`React.test.js` 파일로 모두 변경
-- `client/src/index.js` 파일을 열어서 `import App from "./App.js"` 부분을 `import ReactJS from "./React.js"` 로 변경
+- `client/src/index.js` 파일을 열어서  
+  `import App from "./App.js"` 부분을 `import ReactJS from "./React.js"` 로 변경
 - 기타 파일 import 부분에 오류가 있는지 검사하고 변경 완료
 - React Client Build : `yarn build`
 - `client/build` 폴더 생성확인
