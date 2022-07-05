@@ -10,6 +10,25 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 
+import mongoose from "mongoose";
+
+import { mongoURL } from "./config/mongoConfig.js";
+const dbConn = mongoose.connection;
+dbConn.on("connecting", (conn) => {
+  console.log("connection", conn);
+});
+dbConn.on("connected", (conn) => {
+  console.log("Connected OK!!", conn);
+});
+dbConn.on("open", () => {
+  console.log("MongoDB Open OK~~~");
+});
+dbConn.on("error", (err) => {
+  console.log(err);
+});
+
+mongoose.connect(mongoURL);
+
 // import indexRouter from './routes/index.js';
 import usersRouter from "./routes/users.js";
 
