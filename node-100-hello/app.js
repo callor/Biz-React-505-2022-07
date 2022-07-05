@@ -11,9 +11,11 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 
 import mongoose from "mongoose";
-
 import { mongoURL } from "./config/mongoConfig.js";
 const dbConn = mongoose.connection;
+mongoose.connection.on("connection", () => {
+  console.log("connection");
+});
 dbConn.on("connecting", (conn) => {
   console.log("connection", conn);
 });
@@ -31,6 +33,7 @@ mongoose.connect(mongoURL);
 
 // import indexRouter from './routes/index.js';
 import usersRouter from "./routes/users.js";
+import bucketAPI from "./routes/bucketAPI.js";
 
 const app = express();
 
@@ -49,6 +52,7 @@ app.use(express.static(path.join("./client/build")));
 
 // app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/bucket", bucketAPI);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
