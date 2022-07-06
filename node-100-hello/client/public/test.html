@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나의 홈페이지</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const onClick = () => {
+        const food = document.querySelector("input[name='food']");
+        const date = document.querySelector("input[name='date']");
+        const postData = {
+          food: food.value,
+          date: date.value,
+        };
+      };
+    </script>
+
+    <h1>반갑습니다</h1>
+    <form>
+      <input name="food" />
+      <input name="date" />
+      <button type="button" onClick="{onClick}">전송</button>
+    </form>
+  </body>
+</html>
