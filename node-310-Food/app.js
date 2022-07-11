@@ -9,8 +9,21 @@ import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import mongoose from "mongoose";
+import { mongoURL } from "./config/mongoConfig.js";
 
-import indexRouter from "./routes/index.js";
+const dbConn = mongoose.connection;
+// 최초연결할때 한번만 메시지 보여주기
+dbConn.once("open", () => {
+  console.log("MongDB Open OK~~");
+});
+// 오류가 발생하면 항상 감시하기
+dbConn.on("error", (err) => {
+  console.log(err);
+});
+mongoose.connect(mongoURL);
+
+import foodRouter from "./routes/food.js";
 import usersRouter from "./routes/users.js";
 
 const app = express();
@@ -28,7 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join("./client/build")));
 
-// app.use("/", indexRouter);
+app.use("/food", foodRouter);
 app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
