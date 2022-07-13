@@ -8,6 +8,8 @@
 import { useState, useEffect } from "react";
 import DietInput from "./DietInput";
 import DietList from "./DietList";
+import DietContext from "../context/DietContext";
+
 /*
 DB 에서 데이터들을 fetch 하여 List 를 보여줄 예정인데
 List 보여주고 다음에 item 을 클릭하거나 변경하는 코드를 추가하려면
@@ -81,8 +83,17 @@ const DietMain = () => {
   // 한꺼번에 전달하기
   return (
     <>
-      <DietList params={params} />
-      <DietInput params={params} />
+      {/*
+    DietContext.jsx 파일에 Context 를 하나 생성해 두고
+    Context 의 Provider 에게  params 에 담긴 
+    변수와 함수들을 저장해 놓기(Store)
+
+    각각 개별 Component 에 전달했던 params 을 제거
+    */}
+      <DietContext.Provider value={params}>
+        <DietList />
+        <DietInput params={params} />
+      </DietContext.Provider>
     </>
   );
   /*
