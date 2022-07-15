@@ -1,11 +1,10 @@
 // Store(Context.Provider) import
-import AppContext from "../context/Context";
-import { useContext } from "react";
+import { useAppContext } from "../context/ContextProvider";
 
 const Input = () => {
   // Context.Provider Store 에 보관된 2개의 state 변수와
   // 2개의 setState 함수를 사용요청한다
-  const { address, setAddress, addrList, setAddrList } = useContext(AppContext);
+  const { address, setAddress, addrList, setAddrList } = useAppContext();
   // address state (객체)변수에서 각 요소를 추출 : Input box 에서 사용
   const { a_name, a_tel, a_address } = address;
 

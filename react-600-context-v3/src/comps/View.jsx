@@ -1,5 +1,5 @@
-import AppContext from "../context/Context";
-import { useContext } from "react";
+import { useAppContext } from "../context/ContextProvider";
+
 const View = () => {
   /*
   App.js 에서 생성한 address state 를
@@ -15,7 +15,7 @@ const View = () => {
   useContext 는 React 16.x 버전부터 공식적으로 지원
 
   */
-  const { address } = useContext(AppContext);
+  const { address } = useAppContext();
   const { a_name, a_tel, a_address } = address;
   return (
     <div>
