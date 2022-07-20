@@ -1,0 +1,36 @@
+doctype html 
+html 
+    head 
+        title 내 홈페이지
+        style.
+            h1 {
+                color:blue;
+            } 
+            h1.num {
+                color:red;
+            }
+
+            h1.name  {
+                color:green;
+            }
+            h1.dept {
+                color:black;
+            }
+        script.
+            document.addEventListener("DOMContentLoaded",()=>{
+                const h1 = document.querySelector("h1")
+                h1?.addEventListener("click",(e)=>{
+                    alert(e.target.innerText)
+                })
+            }) 
+
+    body 
+        h1.num#num 학번 : 
+            span= st_num
+        h1.name 이름 :
+            span= st_name
+        h1.dept 학과 : 
+            span= st_dept 
+        h1.grade 학년 :
+            span= st_grade
+
