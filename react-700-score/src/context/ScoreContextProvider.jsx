@@ -10,7 +10,7 @@ const ScoreContextProvider = ({ children }) => {
   const [scoreList, setScoreList] = useState([]);
 
   const fetchStudent = async () => {
-    const response = await fetch("http://localhost:8080/score/student");
+    const response = await fetch("http://localhost:8080/score/api/student");
     const result = await response.json();
     setStudentList(result);
   };

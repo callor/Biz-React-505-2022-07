@@ -10,11 +10,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <div className="w3-container">
-        <ScoreContextProvider>
-          <ScoreMain />
-        </ScoreContextProvider>
-      </div>
+      <ScoreContextProvider>
+        <ScoreMain />
+      </ScoreContextProvider>
     </div>
   );
 }
